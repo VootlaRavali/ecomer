@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fb5c34;
+        }
+        header {
+            background-color: #232121;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .head1{
+            background-color: #e0d4d0;
+            color: #fff;
+            padding: 1px ;
+            text-align: center;
+        }
+        ul{
+            list-style-type: style type none;
+            margin:0;
+            padding:0;
+            overflow:hidden;
+        
+
+        }
+        li{
+            border-right: 2px solid #4bfbc0;
+            text-align: center;
+            display :inline-flex;
+color: rgb(55, 107, 250);
+        }
+        li a:hover {
+background-color: aqua;
+        }
+        .active{
+            background-color: rgb(249, 74, 196);
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .product {
+            border: 1px solid #afe8f6;
+            margin: 10px;
+            padding: 10px;
+            background-color: #fff;
+        }
+        .product img {
+            max-width: 100%;
+        }
+        .cart {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .cart-items {
+            list-style: none;
+            padding: 0;
+        }
+        .cart-items li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Local Store</h1>
+        <div class="head1" id=" head1">
+            <ul>
+                <li href="#">HOME</li>
+                <li><a href="C:\Users\raval\OneDrive\Desktop\ecomr\assets\womn.jpeg">WOMEN WEAR</a></li>
+                <li><a href="C:\Users\raval\OneDrive\Desktop\ecomr\assets\kids.jpeg">KIDS WEAR</a></li>
+                <li><a href="C:\Users\raval\OneDrive\Desktop\ecomr\assets\men.jpeg">MENS WEAR</li></a></li>
+                <li><a href="C:\Users\raval\OneDrive\Desktop\ecomr\assets\acces.jpeg">ACCESORIES</a></li>
+                
+            </ul>
+                
+            </div>
+    </header>
+
+
+    <div class="container">
+        <div id="products"></div>
+    </div>
+    <div class="cart">
+        <h2>Shopping Cart</h2>
+        <ul class="cart-items" id="cart-items"></ul>
+        <button onclick="checkout()">Checkout</button>
+    </div>
+    <script>
+        const products = [
+            { id: 1, name: 'Product 1', description: 'Short red baby frock  ##FREE DELIVERY', price: 100, image: 'https://via.placeholder.com/150' },
+            { id: 2, name: 'Product 2', description: 'JIVIKA attractive women kurta  ##$40 DELIVERY', price: 200, image: 'https://via.placeholder.com/150' },
+            { id: 3, name: 'Product 3', description: 'Akarsha baby dress ##FREE DELIVERY', price: 300, image: 'https://via.placeholder.com/150' },
+            { id: 1, name: 'Product 4', description: 'Sriram fashions  ##FREE DELIVERY', price: 100, image: 'https://via.placeholder.com/150' },
+            { id: 2, name: 'Product 5', description: 'Kids store toys from 99', price: 200, image: 'https://via.placeholder.com/150' },
+            { id: 3, name: 'Product 6', description: 'Siyaa womeb gowns partwear  ## FREE DELIVERY', price: 300, image: 'https://via.placeholder.com/150' },
+            { id: 1, name: 'Product 7', description: 'Ram kids wear ##FREE DELIVERY', price: 100, image: 'https://via.placeholder.com/150' },
+            { id: 2, name: 'Product 8', description: 'Short red baby frock  ##$50 DELIVERY', price: 200, image: 'https://via.placeholder.com/150' },
+            { id: 3, name: 'Product 9', description: 'Ram summer wear #FREE DELIVERY', price: 300, image: 'https://via.placeholder.com/150' }
+
+
+        ];
+
+        const cart = [];
+
+        function displayProducts() {
+            const productsDiv = document.getElementById('products');
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+                productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p>Price: $${product.price}</p>
+                    <button onclick="addToCart(${product.id})">Add to Cart</button>
+                `;
+                productsDiv.appendChild(productDiv);
+            });
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            cart.push(product);
+            displayCart();
+            alert('ADDED TO CART');
+        }
+
+        function displayCart() {
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - $${item.price}`;
+                cartItems.appendChild(li);
+            });
+        }
+
+        function checkout() {
+            alert('YOU HAVE ADDED TO COLLECTION');
+        }
+
+        displayProducts();
+    </script>
+</body>
+</html>
